@@ -3,12 +3,10 @@ function submitSearch(event) {
 
   let searchFormInput = document.querySelector("#searchFormInput");
   let h1 = document.querySelector("h1");
-  h1.innerHTML = `${searchFormInput.value}`;
 
-  let city = searchFormInput.value || "Lisbon";
-  if (!city) {
-    city = "Lisbon";
-  }
+  let city =
+    searchFormInput.value.trim() === "" ? "Lisbon" : searchFormInput.value;
+  h1.innerHTML = `${city}`;
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
@@ -16,6 +14,15 @@ function submitSearch(event) {
 
   searchFormInput.value = "";
 }
+function loadDefaultWeather() {
+  let city = "Lisbon";
+  let apiKey = `f80eot135d2ba84faf905b0d90035259`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayCurrentWeather);
+}
+
+loadDefaultWeather();
 
 let form = document.querySelector("#searchForm");
 form.addEventListener("submit", submitSearch);
@@ -43,26 +50,3 @@ function displayCurrentWeather(response) {
     ".conditions"
   ).innerHTML = `${day}, ${hours}:${minutes}, ${weatherDescription}`;
 }
-
-function getUserLocation() {
-  let apiGeolocationUrl = "http://ip-api.com/json";
-
-  axios
-    .get(apiGeolocationUrl)
-    .then(function (response) {
-      let city = response.data.city;
-
-      let apiKey = `f80eot135d2ba84faf905b0d90035259`;
-      let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-
-      axios.get(apiUrl).then(displayCurrentWeather);
-    })
-    .catch(function (error) {
-      console.error("Error fetching geolocation:", error);
-      alert("I can't determine your location automatically.");
-    });
-}
-
-window.onload = function () {
-  getUserLocation();
-};
