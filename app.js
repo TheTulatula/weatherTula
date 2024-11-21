@@ -5,7 +5,7 @@ function submitSearch(event) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${searchFormInput.value}`;
 
-  let city = searchFormInput.value || "Lisbon";
+  let city = searchFormInput.value() || "Lisbon";
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
