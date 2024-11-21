@@ -5,13 +5,13 @@ function submitSearch(event) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = `${searchFormInput.value}`;
 
-  let city = searchFormInput.value;
+  let city = searchFormInput.value || "Lisbon";
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayCurrentWeather);
 
-  searchFormInput.value = "Lisbon";
+  searchFormInput.value = "";
 }
 
 let form = document.querySelector("#searchForm");
@@ -24,7 +24,6 @@ function displayCurrentWeather(response) {
   let hours = now.getHours();
   let minutes = now.getMinutes().toString().padStart(2, "0");
 
-  let div = document.querySelector(".conditions");
   let temperature = Math.round(response.data.temperature.current);
   let currentCity = response.data.city;
 
@@ -33,6 +32,7 @@ function displayCurrentWeather(response) {
   let weatherDescription = response.data.condition.description;
 
   document.querySelector("h1").innerHTML = `${currentCity}`;
+  document.querySelector("h2").innerHTML = `${temperature}<small>°C</small>`;
   document.querySelector(
     ".hygroAnemoMeter"
   ).innerHTML = `Humidity: <strong>${humidity}%</strong>, Wind: <strong>${windSpeed} km/h</strong>`;
