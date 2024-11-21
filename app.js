@@ -10,7 +10,8 @@ function submitSearch(event) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayCurrentWeather);
-  searchFormInput.value = "";
+
+  searchFormInput.value = "Lisbon";
 }
 
 let form = document.querySelector("#searchForm");
