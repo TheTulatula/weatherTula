@@ -1,3 +1,24 @@
+function getUserLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        let latitude = position.coords.latitude;
+        let longitude = position.coords.longitude;
+        let apiKey = `f80eot135d2ba84faf905b0d90035259`;
+        let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=metric`;
+
+        axios.get(apiUrl).then(displayCurrentWeather);
+      },
+      (error) => {
+        loadDefaultWeather();
+      }
+    );
+  } else {
+    loadDefaultWeather();
+  }
+}
+getUserLocation();
+
 function submitSearch(event) {
   event.preventDefault();
 
@@ -69,6 +90,6 @@ function visualChangeConditions(weatherDescription) {
       "radial-gradient(circle, rgba(141,153,174,1) 40%, rgba(2,48,71,1) 100%)";
   } else if (weatherDescription.includes("sun")) {
     document.querySelector("body").style.background =
-      "radial-gradient(circle, rgba(127,194,255,1) 40%, rgba(46,33,188,1) 100%)";
+      "radial-gradient(circle, rgba(142,202,230,1) 0%, rgba(33,158,188,1) 100%)";
   }
 }
