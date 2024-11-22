@@ -3,7 +3,7 @@ body {
   text-align: center;
   background: radial-gradient(
     circle,
-    rgba(127, 255, 212, 1) 40%,
+    rgba(142, 202, 230, 1) 0%,
     rgba(33, 158, 188, 1) 100%
   );
 }
@@ -15,7 +15,7 @@ h1 {
 h2 {
   font-size: 56px;
   line-height: 1.5;
-  margin: 10px;
+  margin: 10px 10px 0px 10px;
 }
 small {
   font-size: 22px;
@@ -23,12 +23,11 @@ small {
   position: relative;
   top: 15px;
 }
-#sunIcon {
-  font-size: 70px;
-  font-weight: bold;
-  color: #fb8500;
+#mainIcon {
   margin-bottom: 20px;
+  height: 120px;
 }
+
 .conditions,
 .hygroAnemoMeter {
   font-size: 14px;
@@ -73,7 +72,8 @@ form {
   width: 100%;
   border: 0px;
   border-radius: 5px;
-  line-height: 1.75;
+
+  height: 25px;
   opacity: 50%;
 }
 #searchFormButton {
@@ -83,15 +83,14 @@ form {
   align-items: center;
   border: 0px;
   border-radius: 5px;
-  line-height: 1.75;
+
   color: white;
   font-weight: bold;
   background-color: #023047;
+  height: 25px;
 }
+
 #searchIcon {
-  position: absolute;
-  top: 52%;
-  right: 20%;
   font-size: 16px;
   font-weight: bold;
   pointer-events: none;

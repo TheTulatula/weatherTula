@@ -17,21 +17,22 @@
   <body>
 
   <header>
-    <h1>Lisbon</h1>
-     
-    <h2>25<small>°C</small></h2>
-       <span class="material-symbols-outlined" id="sunIcon">
-          clear_day</span>
+    <h1>Your Location</h1>    <!-- comment Lisbon--> 
+    <h2></h2>             <!-- comment 25°C--> 
+       <span class="material-symbols-outlined" id="mainIcon">
+       autorenew
+       </span>
         </br>
-
-       <span class="conditions"> day, time - moderate rain </span>  
+       <span class="conditions"> day, time - conditions </span>  
         </br>
-       <span class="hygroAnemoMeter">Humidity: <strong>00%</strong>, Wind: <strong>7.2km/h</strong> </span>
+       <span class="hygroAnemoMeter">Humidity: <strong>00%</strong>, Wind: <strong>0.0km/h</strong> </span>
    <form id="searchForm">
-        <input type="search" placeholder=" Search city" required id="searchFormInput"/>
-        <input type="submit" value=" ⌕ " id="searchFormButton"/>
-        <span class="material-symbols-outlined" id="searchIcon">
-        search </span>
+        <input type="search" placeholder=" Search city" required minlength="2"id="searchFormInput"/>
+        <button id="searchFormButton">
+  <span class="material-symbols-outlined" id="searchIcon">
+    search
+  </span>
+</button>
     </form>
   </header> 
 
@@ -71,6 +72,7 @@
         <a href="https://www.linkedin.com/in/tal-nidam-44946b185/" target="_blank">Tal Nidam</a> and is open-sourced
         <a href="https://github.com/TheTulatula" target="_blank"> on GitHub</a> 
       </p>
+     
   </footer>
 </div>
 

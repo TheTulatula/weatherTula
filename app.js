@@ -4,8 +4,12 @@ function submitSearch(event) {
   let searchFormInput = document.querySelector("#searchFormInput");
   let h1 = document.querySelector("h1");
 
-  let city =
-    searchFormInput.value.trim() === "" ? "Lisbon" : searchFormInput.value;
+  let city;
+  if (searchFormInput.value.trim() === "") {
+    city = "Lisbon";
+  } else {
+    city = searchFormInput.value;
+  }
   h1.innerHTML = `${city}`;
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
@@ -37,9 +41,12 @@ function displayCurrentWeather(response) {
   let temperature = Math.round(response.data.temperature.current);
   let currentCity = response.data.city;
 
-  let humidity = response.data.temperature.humidity;
-  let windSpeed = response.data.wind.speed;
+  let humidity = Math.round(response.data.temperature.humidity);
+  let windSpeed = Math.round(response.data.wind.speed);
   let weatherDescription = response.data.condition.description;
+
+  let mainIcon = document.querySelector("#mainIcon");
+  mainIcon.innerHTML = `<img src="${response.data.condition.icon_url}" id = "mainIcon"/>`;
 
   document.querySelector("h1").innerHTML = `${currentCity}`;
   document.querySelector("h2").innerHTML = `${temperature}<small>°C</small>`;
@@ -49,4 +56,19 @@ function displayCurrentWeather(response) {
   document.querySelector(
     ".conditions"
   ).innerHTML = `${day}, ${hours}:${minutes}, ${weatherDescription}`;
+
+  visualChangeConditions(weatherDescription, hours);
+}
+
+function visualChangeConditions(weatherDescription) {
+  if (weatherDescription.includes("cloud") || currentHour >= 17) {
+    document.querySelector("body").style.background =
+      "radial-gradient(circle, rgba(69,123,157,1) 0%, rgba(2,48,71,1) 100%)";
+  } else if (weatherDescription.includes("rain")) {
+    document.querySelector("body").style.background =
+      "radial-gradient(circle, rgba(141,153,174,1) 40%, rgba(2,48,71,1) 100%)";
+  } else if (weatherDescription.includes("sun")) {
+    document.querySelector("body").style.background =
+      "radial-gradient(circle, rgba(127,194,255,1) 40%, rgba(46,33,188,1) 100%)";
+  }
 }
