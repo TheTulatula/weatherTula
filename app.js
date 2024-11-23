@@ -1,3 +1,5 @@
+let apiDgreesUnit = "metric";
+
 function getUserLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -5,7 +7,7 @@ function getUserLocation() {
         let latitude = position.coords.latitude;
         let longitude = position.coords.longitude;
         let apiKey = `f80eot135d2ba84faf905b0d90035259`;
-        let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=metric`;
+        let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=${apiDgreesUnit}`;
 
         axios.get(apiUrl).then(displayCurrentWeather);
       },
@@ -33,21 +35,36 @@ function submitSearch(event) {
   }
   h1.innerHTML = `${city}`;
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${apiDgreesUnit}`;
 
   axios.get(apiUrl).then(displayCurrentWeather);
 
   searchFormInput.value = "";
 }
+
 function loadDefaultWeather() {
   let city = "Lisbon";
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${apiDgreesUnit}`;
 
   axios.get(apiUrl).then(displayCurrentWeather);
 }
 
 loadDefaultWeather();
+
+let buttonUnit = document.querySelector(".buttonUnitDgree");
+buttonUnit.addEventListener("click", changeDgrees);
+
+function changeDgrees() {
+  if (apiDgreesUnit === "metric") {
+    apiDgreesUnit = "imperial";
+    buttonUnit.innerText = "°C";
+  } else {
+    apiDgreesUnit = "metric";
+    buttonUnit.innerText = "°F";
+  }
+  loadDefaultWeather();
+}
 
 let form = document.querySelector("#searchForm");
 form.addEventListener("submit", submitSearch);
@@ -72,7 +89,9 @@ function displayCurrentWeather(response) {
   mainIcon.innerHTML = `<img src="${response.data.condition.icon_url}"/>`;
 
   document.querySelector("h1").innerHTML = `${currentCity}`;
-  document.querySelector("h2").innerHTML = `${temperature}<small>°C</small>`;
+  document.querySelector("h2").innerHTML = `${temperature}<small>${
+    apiDgreesUnit === "metric" ? "°C" : "°F"
+  }</small>`;
   document.querySelector(
     ".hygroAnemoMeter"
   ).innerHTML = `Humidity: <strong>${humidity}%</strong>, Wind: <strong>${windSpeed} km/h</strong>`;
