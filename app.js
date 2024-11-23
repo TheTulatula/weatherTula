@@ -53,7 +53,10 @@ function loadDefaultWeather() {
 loadDefaultWeather();
 
 let buttonUnit = document.querySelector(".buttonUnitDgree");
-buttonUnit.addEventListener("click", changeDgrees);
+buttonUnit.addEventListener("click", (event) => {
+  event.preventDefault();
+  changeDgrees();
+});
 
 function changeDgrees() {
   if (apiDgreesUnit === "metric") {
