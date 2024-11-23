@@ -67,7 +67,10 @@ function displayCurrentWeather(response) {
   let weatherDescription = response.data.condition.description;
 
   let mainIcon = document.querySelector("#mainIcon");
-  mainIcon.innerHTML = `<img src="${response.data.condition.icon_url}" id = "mainIcon"/>`;
+  mainIcon.innerHTML = `<img src="${response.data.condition.icon_url.replace(
+    "http://",
+    "https://"
+  )}}" id = "mainIcon"/>`;
 
   document.querySelector("h1").innerHTML = `${currentCity}`;
   document.querySelector("h2").innerHTML = `${temperature}<small>°C</small>`;
@@ -78,10 +81,10 @@ function displayCurrentWeather(response) {
     ".conditions"
   ).innerHTML = `${day}, ${hours}:${minutes}, ${weatherDescription}`;
 
-  visualChangeConditions(weatherDescription, hours);
+  backgroundChangeWithConditions(weatherDescription, hours);
 }
 
-function visualChangeConditions(weatherDescription) {
+function backgroundChangeWithConditions(weatherDescription, currentHour) {
   if (weatherDescription.includes("cloud") || currentHour >= 17) {
     document.querySelector("body").style.background =
       "radial-gradient(circle, rgba(69,123,157,1) 0%, rgba(2,48,71,1) 100%)";
