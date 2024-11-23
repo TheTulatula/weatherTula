@@ -53,6 +53,8 @@ let form = document.querySelector("#searchForm");
 form.addEventListener("submit", submitSearch);
 
 function displayCurrentWeather(response) {
+  console.log("API Response:", response);
+  console.log(response.data.condition.icon_url);
   let now = new Date();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[now.getDay()];
@@ -67,10 +69,7 @@ function displayCurrentWeather(response) {
   let weatherDescription = response.data.condition.description;
 
   let mainIcon = document.querySelector("#mainIcon");
-  mainIcon.innerHTML = `<img src="${response.data.condition.icon_url.replace(
-    "http://",
-    "https://"
-  )}}" id = "mainIcon"/>`;
+  mainIcon.innerHTML = `<img src="${response.data.condition.icon_url}" id = "mainIcon"/>`;
 
   document.querySelector("h1").innerHTML = `${currentCity}`;
   document.querySelector("h2").innerHTML = `${temperature}<small>°C</small>`;
