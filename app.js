@@ -68,11 +68,8 @@ function displayCurrentWeather(response) {
   let windSpeed = Math.round(response.data.wind.speed);
   let weatherDescription = response.data.condition.description;
 
-  let proxyUrl = "https://cors-anywhere.herokuapp.com/";
-  let iconUrl = response.data.condition.icon_url;
-  let secureIconUrl = `${proxyUrl}${iconUrl}`;
   let mainIcon = document.querySelector("#mainIcon");
-  mainIcon.innerHTML = `<img src=""${secureIconUrl}" id = "mainIcon"/>`;
+  mainIcon.innerHTML = `<img src="${response.data.condition.icon_url}"/>`;
 
   document.querySelector("h1").innerHTML = `${currentCity}`;
   document.querySelector("h2").innerHTML = `${temperature}<small>°C</small>`;
