@@ -80,12 +80,14 @@ form {
   justify-content: center;
   align-items: center;
   height: 35px;
+  padding: 10px 7.5px;
+  background-color: #3f569a;
 }
 #searchFormButton,
 .buttonUnitDgree {
   color: white;
   font-weight: bold;
-  background-color: #023047;
+
   height: 25px;
   border: 0px;
   border-radius: 5px;
@@ -95,6 +97,7 @@ form {
   position: relative;
   justify-content: center;
   align-items: center;
+  background-color: #023047;
 }
 
 #searchIcon {
@@ -124,4 +127,10 @@ div.tenDayForecast {
 }
 footer {
   font-size: 11px;
+}
+h3 {
+  margin-top: 5px;
+}
+a {
+  color: #3f569a;
 }
