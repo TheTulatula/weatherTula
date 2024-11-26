@@ -117,3 +117,35 @@ function backgroundChangeWithConditions(weatherDescription, currentHour) {
       "radial-gradient(circle, rgba(142,202,230,1) 0%, rgba(33,158,188,1) 100%)";
   }
 }
+function displayHourlyForecast() {
+  let hourlyForecast = document.querySelector("#forecastByHour");
+  hourlyForecast.innerHTML = `
+ <div class="futureHourForecast">
+       <div class=" singleHourForecastTime">   16:00</div>
+       <div class=" singleHourForecastIcon">  
+        <span class="material-symbols-outlined" id="forecastSmallIcon">
+       autorenew
+       </span></div>
+       <div class=" = singleHourForecastTemperture">21</div>
+       </div>`;
+}
+function displayDayForecast() {
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let dayForecastHtml = "";
+
+  days.forEach(function (day) {
+    dayForecastHtml += `
+       <div class="futureDayForecast">
+        <div class=" forecastDay">   ${day}</div>
+        <div class="  forecastyDayIcon">  
+         <span class="material-symbols-outlined" id="forecastSmallIcon">
+        autorenew
+        </span></div>
+        <div class="  forecastDayTemperture">21</div>
+     </div>`;
+  });
+  let dayForecast = document.querySelector("#forecastByDay");
+  dayForecast.innerHTML = dayForecastHtml;
+}
+
+displayDayForecast();

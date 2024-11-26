@@ -120,9 +120,11 @@ form {
 div.hourlyForecast::-webkit-scrollbar {
   display: none;
 }
-div.tenDayForecast {
+div.allFutureDayForecast {
+  display: flex;
+}
+div.futureDayForecast {
   margin: 25px;
-
   border-radius: 5px;
 }
 footer {
