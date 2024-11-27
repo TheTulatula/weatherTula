@@ -124,8 +124,17 @@ div.allFutureDayForecast {
   display: flex;
 }
 div.futureDayForecast {
-  margin: 25px;
+  margin: 20px 10px;
   border-radius: 5px;
+}
+.forecastyDayIcon {
+  height: 44px;
+}
+.forecastDayTempertureContainer {
+  display: flex;
+}
+.forecastDayTemperture {
+  margin: 0px 5px;
 }
 footer {
   font-size: 11px;

@@ -103,6 +103,8 @@ function displayCurrentWeather(response) {
   ).innerHTML = `${day}, ${hours}:${minutes}, ${weatherDescription}`;
 
   backgroundChangeWithConditions(weatherDescription, hours);
+
+  getDayforecast(response.data.city);
 }
 
 function backgroundChangeWithConditions(weatherDescription, currentHour) {
@@ -117,35 +119,41 @@ function backgroundChangeWithConditions(weatherDescription, currentHour) {
       "radial-gradient(circle, rgba(142,202,230,1) 0%, rgba(33,158,188,1) 100%)";
   }
 }
-function displayHourlyForecast() {
-  let hourlyForecast = document.querySelector("#forecastByHour");
-  hourlyForecast.innerHTML = `
- <div class="futureHourForecast">
-       <div class=" singleHourForecastTime">   16:00</div>
-       <div class=" singleHourForecastIcon">  
-        <span class="material-symbols-outlined" id="forecastSmallIcon">
-       autorenew
-       </span></div>
-       <div class=" = singleHourForecastTemperture">21</div>
-       </div>`;
+
+function getDayforecast(city) {
+  let apiKey = `f80eot135d2ba84faf905b0d90035259`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${apiDgreesUnit}`;
+  axios(apiUrl).then(displayDayForecast);
+  console.log(apiUrl);
 }
-function displayDayForecast() {
+function formatDayForecast(timestamp) {
+  let date = new Date(timestamp * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+function displayDayForecast(response) {
+  console.log(response.data);
+
   let dayForecastHtml = "";
 
-  days.forEach(function (day) {
-    dayForecastHtml += `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 8) {
+      dayForecastHtml += `
        <div class="futureDayForecast">
-        <div class=" forecastDay">   ${day}</div>
-        <div class="  forecastyDayIcon">  
-         <span class="material-symbols-outlined" id="forecastSmallIcon">
-        autorenew
-        </span></div>
-        <div class="  forecastDayTemperture">21</div>
+        <div class=" forecastDay">   ${formatDayForecast(day.time)}</div>
+         
+        <img class="  forecastyDayIcon" src="${day.condition.icon_url}"/>
+        <div class="forecastDayTempertureContainer">
+        <div class="  forecastDayTemperture"><strong>${Math.round(
+          day.temperature.maximum
+        )}°</strong></div>
+        <div class="  forecastDayTemperture">${Math.round(
+          day.temperature.minimum
+        )}°</div>
+        </div>
      </div>`;
+    }
   });
   let dayForecast = document.querySelector("#forecastByDay");
   dayForecast.innerHTML = dayForecastHtml;
 }
-
-displayDayForecast();
