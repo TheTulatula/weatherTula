@@ -5,65 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WeatherTula</title>
     <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    
-<link rel="stylesheet" href="style.css" />
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <header>
+      <h1>Your Location</h1>
+      <!-- comment Lisbon-->
+      <div class="tempAndIcon">
+        <!-- comment 25°C-->
+        <span class="material-symbols-outlined" id="mainIcon"> autorenew </span>
+        <h2></h2>
+      </div>
 
-  <header>
-    
-    <h1>Your Location</h1>    <!-- comment Lisbon--> 
-    <h2></h2>             <!-- comment 25°C--> 
-       <span class="material-symbols-outlined" id="mainIcon">
-       autorenew
-       </span>
-        </br>
-       <span class="conditions"> day, time - conditions </span>  
-        </br>
-       <span class="hygroAnemoMeter">Humidity: <strong>00%</strong>, Wind: <strong>0.0km/h</strong> </span>
-      
-  
-  <form id="searchForm">
-        <input type="search" placeholder=" Search city" required minlength="2"id="searchFormInput"/>
+      <div class="conditionsLinesContainer">
+        <span class="conditions"> day, time - conditions </span>
+        <span class="hygroAnemoMeter"
+          >Humidity: <strong>00%</strong>, Wind: <strong>0.0km/h</strong>
+        </span>
+      </div>
+
+      <form id="searchForm">
+        <input
+          type="search"
+          placeholder=" Search city"
+          required
+          minlength="2"
+          id="searchFormInput"
+        />
         <button id="searchFormButton">
-  <span class="material-symbols-outlined" id="searchIcon">
-    search
-  </span>
-</button> 
-<button class="buttonUnitDgree">°F </button> 
-    </form>
-  </header> 
+          <span class="material-symbols-outlined" id="searchIcon">
+            search
+          </span>
+        </button>
+        <button class="buttonUnitDgree">°F</button>
+      </form>
+    </header>
 
-  <div class="secondContainer">
-    <h3>Hourly forecast</h3>
-    <div class="hourlyForecast" id="forecastByHour">
+    <div class="secondContainer">
+      <h3>Weekly Forecast</h3>
+      <div class="allFutureDayForecast" id="forecastByDay"></div>
+
+      <footer>
+        <p>
+          Coded by
+          <a
+            href="https://www.linkedin.com/in/tal-nidam-44946b185/"
+            target="_blank"
+            >Tal Nidam</a
+          >
+          and is open-sourced
+          <a href="https://github.com/TheTulatula" target="_blank">
+            on GitHub</a
+          >
+          hosted on<a href="https://weathertula.netlify.app/" target="_blank">
+            Netlify</a
+          >
+        </p>
+      </footer>
     </div>
-  </div>
-
-<div class="thirdContainer">
-   <h3>7 day forecast</h3>
-   <div class="allFutureDayForecast" id="forecastByDay">
-
-     
-  </div>
-
-  <footer>
-      <p>
-        Coded by
-        <a href="https://www.linkedin.com/in/tal-nidam-44946b185/" target="_blank">Tal Nidam</a> and is open-sourced
-        <a href="https://github.com/TheTulatula" target="_blank"> on GitHub</a> 
-       hosted on<a href="https://weathertula.netlify.app/" target="_blank"> Netlify</a>
-      </p>
-     
-  </footer>
-</div>
 
     <script src="app.js"></script>
+    <script src="appBackground.js"></script>
   </body>
 </html>

@@ -23,16 +23,36 @@ small {
   position: relative;
   top: 15px;
 }
-#mainIcon {
-  margin-bottom: 20px;
-  height: 120px;
-}
 
+.tempAndIcon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: auto;
+}
+#mainIcon {
+  font-size: 44px;
+}
+#mainIcon img {
+  height: 80px;
+  margin-top: 12px;
+}
+.conditionsLinesContainer {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 .conditions,
 .hygroAnemoMeter {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.75;
+  flex: 1;
+  width: 300px;
+  text-align: center;
 }
 
 header {
@@ -44,18 +64,7 @@ header {
   box-shadow: 0px 0px 20px rgb(113, 113, 113);
   border-radius: 10px;
 }
-.secondContainer,
-.thirdContainer {
-  background-color: rgba(245, 245, 245, 0.5);
-  padding: 25px;
-  border-radius: 5px;
-  max-width: 400px;
-  margin: 20px auto;
-  box-shadow: 0px 0px 20px rgb(113, 113, 113);
-  border-radius: 10px;
-  font-size: 14px;
-  font-weight: 400;
-}
+
 form {
   display: flex;
   justify-content: center;
@@ -87,7 +96,7 @@ form {
 .buttonUnitDgree {
   color: white;
   font-weight: bold;
-
+  cursor: pointer;
   height: 25px;
   border: 0px;
   border-radius: 5px;
@@ -105,26 +114,39 @@ form {
   font-weight: bold;
   pointer-events: none;
 }
-.hourlyForecast {
-  padding: 15px;
-  align-items: center;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(12, 70px);
-  grid-gap: 5px;
-  overflow-x: auto;
-  white-space: nowrap;
-  width: 300px;
-  cursor: grab;
-}
-div.hourlyForecast::-webkit-scrollbar {
-  display: none;
+.secondContainer {
+  background-color: rgba(245, 245, 245, 0.5);
+  padding: 25px;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0px 0px 20px rgb(113, 113, 113);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 400;
 }
 div.allFutureDayForecast {
+  font-weight: 500;
   display: flex;
+  overflow-x: auto;
+  cursor: grab;
+}
+div.allFutureDayForecast::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 0 20px;
+}
+div.allFutureDayForecast::-webkit-scrollbar {
+  height: 12px;
+}
+div.allFutureDayForecast::-webkit-scrollbar-thumb {
+  background-color: #b0c4de;
+  border-radius: 10px;
+}
+div.allFutureDayForecast:active {
+  cursor: grabbing;
 }
 div.futureDayForecast {
-  margin: 20px 10px;
+  margin: 20px 11px;
   border-radius: 5px;
 }
 .forecastyDayIcon {
@@ -134,14 +156,16 @@ div.futureDayForecast {
   display: flex;
 }
 .forecastDayTemperture {
-  margin: 0px 5px;
+  margin: 0px 4px;
 }
 footer {
   font-size: 11px;
+  margin-top: 25px;
 }
 h3 {
   margin-top: 5px;
+  font-size: 20px;
 }
 a {
-  color: #3f569a;
+  color: #023047;
 }
