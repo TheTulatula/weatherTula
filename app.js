@@ -75,6 +75,7 @@ form.addEventListener("submit", submitSearch);
 function displayCurrentWeather(response) {
   console.log("API Response:", response);
   console.log(response.data.condition.icon_url);
+
   let now = new Date();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days[now.getDay()];

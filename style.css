@@ -139,7 +139,7 @@ div.allFutureDayForecast::-webkit-scrollbar {
   height: 12px;
 }
 div.allFutureDayForecast::-webkit-scrollbar-thumb {
-  background-color: #b0c4de;
+  background-color: #3f569a;
   border-radius: 10px;
 }
 div.allFutureDayForecast:active {
@@ -148,15 +148,23 @@ div.allFutureDayForecast:active {
 div.futureDayForecast {
   margin: 20px 11px;
   border-radius: 5px;
+  padding: 0;
 }
 .forecastyDayIcon {
-  height: 44px;
+  height: 50px;
 }
 .forecastDayTempertureContainer {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  max-width: 58px;
 }
 .forecastDayTemperture {
+  font-size: 14px;
   margin: 0px 4px;
+  display: inline-block;
 }
 footer {
   font-size: 11px;
@@ -167,5 +175,11 @@ h3 {
   font-size: 20px;
 }
 a {
-  color: #023047;
+  text-decoration: none;
+  color: #3f569a;
+  font-weight: 400;
+}
+a:hover {
+  color: rgb(107, 20, 151);
+  text-decoration: underline;
 }
