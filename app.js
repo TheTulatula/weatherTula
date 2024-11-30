@@ -1,4 +1,5 @@
 let apiDgreesUnit = "metric";
+let currentCity = "Lisbon";
 
 function getUserLocation() {
   if (navigator.geolocation) {
@@ -9,7 +10,10 @@ function getUserLocation() {
         let apiKey = `f80eot135d2ba84faf905b0d90035259`;
         let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=${apiDgreesUnit}`;
 
-        axios.get(apiUrl).then(displayCurrentWeather);
+        axios.get(apiUrl).then((response) => {
+          currentCity = response.data.city;
+          displayCurrentWeather(response);
+        });
       },
       (error) => {
         loadDefaultWeather();
@@ -33,6 +37,7 @@ function submitSearch(event) {
   } else {
     city = searchFormInput.value;
   }
+  currentCity = city;
   h1.innerHTML = `${city}`;
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${apiDgreesUnit}`;
@@ -44,6 +49,7 @@ function submitSearch(event) {
 
 function loadDefaultWeather() {
   let city = "Lisbon";
+  currentCity = city;
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${apiDgreesUnit}`;
 
@@ -66,7 +72,10 @@ function changeDgrees() {
     apiDgreesUnit = "metric";
     buttonUnit.innerText = "°F";
   }
-  loadDefaultWeather();
+  let apiKey = `f80eot135d2ba84faf905b0d90035259`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=${apiDgreesUnit}`;
+
+  axios.get(apiUrl).then(displayCurrentWeather);
 }
 
 let form = document.querySelector("#searchForm");
@@ -145,3 +154,8 @@ function displayDayForecast(response) {
   let dayForecast = document.querySelector("#forecastByDay");
   dayForecast.innerHTML = dayForecastHtml;
 }
+setInterval(() => {
+  let apiKey = `f80eot135d2ba84faf905b0d90035259`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=${apiDgreesUnit}`;
+  axios.get(apiUrl).then(displayCurrentWeather);
+}, 60000);
