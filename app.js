@@ -158,4 +158,4 @@ setInterval(() => {
   let apiKey = `f80eot135d2ba84faf905b0d90035259`;
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${currentCity}&key=${apiKey}&units=${apiDgreesUnit}`;
   axios.get(apiUrl).then(displayCurrentWeather);
-}, 60000);
+}, 600000);
